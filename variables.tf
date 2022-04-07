@@ -20,7 +20,7 @@ variable "nodes-version" {
 }
 
 variable "primary-instance-type" {
-  type = string
+  type    = string
   default = ""
 }
 
@@ -29,7 +29,7 @@ variable "cluster-subnets-ids" {
 }
 
 variable "primary-node-subnets-ids" {
-  type = list(string)
+  type    = list(string)
   default = []
 }
 
@@ -44,17 +44,17 @@ variable "spot-instance-types" {
 }
 
 variable "primary-nodes-count" {
-  type = string
+  type    = string
   default = "0"
 }
 
 variable "primary-max-nodes-count" {
-  type = string
+  type    = string
   default = "5"
 }
 
 variable "primary-min-nodes-count" {
-  type = string
+  type    = string
   default = "0"
 }
 
