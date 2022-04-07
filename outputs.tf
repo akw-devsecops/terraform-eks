@@ -20,6 +20,10 @@ output "eks_nodes_launch_template_id" {
   value = aws_launch_template.cluster-nodes-launch-template.id
 }
 
+output "eks_nodes_launch_template_version" {
+  value = aws_launch_template.cluster-nodes-launch-template.latest_version
+}
+
 output "eks_endpoint" {
   value = aws_eks_cluster.cluster-masters.endpoint
 }
