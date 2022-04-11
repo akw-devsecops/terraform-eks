@@ -1,7 +1,3 @@
-variable "region" {
-  type = string
-}
-
 variable "vpc-id" {
   type = string
 }
@@ -181,4 +177,10 @@ variable "eks-masters-iam-role" {
 variable "eks-nodes-iam-role" {
   type    = string
   default = ""
+}
+
+variable "enable_restricted_security_policy" {
+  type        = bool
+  description = "Removes the the default eks.privileged policy and creates a restricted policy."
+  default     = true
 }

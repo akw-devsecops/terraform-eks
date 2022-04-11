@@ -31,6 +31,7 @@ The following Resources will be created:
 |------|---------|
 | <a name="provider_aws"></a> [aws](#provider\_aws) | >=3.25.0 |
 | <a name="provider_kubernetes"></a> [kubernetes](#provider\_kubernetes) | n/a |
+| <a name="provider_null"></a> [null](#provider\_null) | n/a |
 
 ## Modules
 
@@ -58,7 +59,11 @@ No modules.
 | [aws_security_group.Group-eks-nodes](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group) | resource |
 | [aws_security_group_rule.Group-eks-nodes-self](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group_rule) | resource |
 | [aws_security_group_rule.Group-eks-self](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group_rule) | resource |
+| [kubernetes_cluster_role.restricted](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/cluster_role) | resource |
+| [kubernetes_cluster_role_binding.restricted](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/cluster_role_binding) | resource |
 | [kubernetes_config_map.aws_auth](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/config_map) | resource |
+| [kubernetes_pod_security_policy.restricted](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod_security_policy) | resource |
+| [null_resource.remove_default_privileged_policy](https://registry.terraform.io/providers/hashicorp/null/latest/docs/resources/resource) | resource |
 
 ## Inputs
 
@@ -67,7 +72,6 @@ No modules.
 | <a name="input_cluster-name"></a> [cluster-name](#input\_cluster-name) | n/a | `string` | n/a | yes |
 | <a name="input_cluster-subnets-ids"></a> [cluster-subnets-ids](#input\_cluster-subnets-ids) | n/a | `list(string)` | n/a | yes |
 | <a name="input_eks-version"></a> [eks-version](#input\_eks-version) | n/a | `string` | n/a | yes |
-| <a name="input_region"></a> [region](#input\_region) | n/a | `string` | n/a | yes |
 | <a name="input_service_ipv4_cidr"></a> [service\_ipv4\_cidr](#input\_service\_ipv4\_cidr) | n/a | `string` | n/a | yes |
 | <a name="input_tags"></a> [tags](#input\_tags) | n/a | `map(string)` | n/a | yes |
 | <a name="input_vpc-id"></a> [vpc-id](#input\_vpc-id) | n/a | `string` | n/a | yes |
@@ -85,6 +89,7 @@ No modules.
 | <a name="input_enable-spot-instances"></a> [enable-spot-instances](#input\_enable-spot-instances) | n/a | `bool` | `false` | no |
 | <a name="input_enable_coredns_addon"></a> [enable\_coredns\_addon](#input\_enable\_coredns\_addon) | Enable CoreDNS AddOn | `bool` | `false` | no |
 | <a name="input_enable_iam"></a> [enable\_iam](#input\_enable\_iam) | Deploy IAM Roles in cluster creation. | `bool` | `true` | no |
+| <a name="input_enable_restricted_security_policy"></a> [enable\_restricted\_security\_policy](#input\_enable\_restricted\_security\_policy) | Removes the the default eks.privileged policy and creates a restricted policy. | `bool` | `true` | no |
 | <a name="input_map-roles"></a> [map-roles](#input\_map-roles) | Additional IAM roles to add to the aws-auth configmap. See readme for example format. | `map(list(string))` | `{}` | no |
 | <a name="input_map-users"></a> [map-users](#input\_map-users) | Additional IAM users to add to the aws-auth configmap. See readme for example format. | `map(list(string))` | `{}` | no |
 | <a name="input_nodes-additional-security-groups"></a> [nodes-additional-security-groups](#input\_nodes-additional-security-groups) | n/a | `list(string)` | `[]` | no |
@@ -193,7 +198,6 @@ module "eks" {
     aws = aws
   }
   source                           = "git::https://dummy.git"
-  region                           = var.region
   cluster-name                     = var.cluster-name
   eks-version                      = var.eks-version
   nodes-version                    = var.nodes-version
