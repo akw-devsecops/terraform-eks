@@ -62,7 +62,10 @@ No modules.
 | [kubernetes_cluster_role.restricted](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/cluster_role) | resource |
 | [kubernetes_cluster_role_binding.restricted](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/cluster_role_binding) | resource |
 | [kubernetes_config_map.aws_auth](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/config_map) | resource |
+| [kubernetes_pod_security_policy.privileged](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod_security_policy) | resource |
 | [kubernetes_pod_security_policy.restricted](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod_security_policy) | resource |
+| [kubernetes_role.privileged](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/role) | resource |
+| [kubernetes_role_binding.privileged](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/role_binding) | resource |
 | [null_resource.remove_default_privileged_policy](https://registry.terraform.io/providers/hashicorp/null/latest/docs/resources/resource) | resource |
 
 ## Inputs
