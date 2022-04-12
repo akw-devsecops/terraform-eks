@@ -107,11 +107,12 @@ resource "kubernetes_pod_security_policy" "privileged" {
   }
 
   spec {
-    privileged                 = true
-    allow_privilege_escalation = true
-    allowed_capabilities       = ["*"]
-    volumes                    = ["*"]
-    host_network               = true
+    privileged                         = true
+    allow_privilege_escalation         = true
+    default_allow_privilege_escalation = true
+    allowed_capabilities               = ["*"]
+    volumes                            = ["*"]
+    host_network                       = true
     host_ports {
       min = 0
       max = 65535
@@ -137,7 +138,7 @@ resource "kubernetes_role" "privileged" {
   count = var.enable_restricted_security_policy ? 1 : 0
 
   metadata {
-    name = "psp:privileged"
+    name      = "psp:privileged"
     namespace = "kube-system"
   }
 
@@ -153,7 +154,7 @@ resource "kubernetes_role_binding" "privileged" {
   count = var.enable_restricted_security_policy ? 1 : 0
 
   metadata {
-    name = "psp:privileged"
+    name      = "psp:privileged"
     namespace = "kube-system"
   }
   role_ref {
