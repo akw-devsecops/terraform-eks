@@ -62,6 +62,7 @@ No modules.
 | [kubernetes_cluster_role.restricted](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/cluster_role) | resource |
 | [kubernetes_cluster_role_binding.restricted](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/cluster_role_binding) | resource |
 | [kubernetes_config_map.aws_auth](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/config_map) | resource |
+| [kubernetes_config_map.coredns](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/config_map) | resource |
 | [kubernetes_pod_security_policy.privileged](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod_security_policy) | resource |
 | [kubernetes_pod_security_policy.restricted](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod_security_policy) | resource |
 | [kubernetes_role.privileged](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/role) | resource |
@@ -93,6 +94,7 @@ No modules.
 | <a name="input_enable_coredns_addon"></a> [enable\_coredns\_addon](#input\_enable\_coredns\_addon) | Enable CoreDNS AddOn | `bool` | `false` | no |
 | <a name="input_enable_iam"></a> [enable\_iam](#input\_enable\_iam) | Deploy IAM Roles in cluster creation. | `bool` | `true` | no |
 | <a name="input_enable_restricted_security_policy"></a> [enable\_restricted\_security\_policy](#input\_enable\_restricted\_security\_policy) | Removes the the default eks.privileged policy and creates a restricted policy. | `bool` | `true` | no |
+| <a name="input_extra_coredns_zones"></a> [extra\_coredns\_zones](#input\_extra\_coredns\_zones) | Additional zones to be placed in CoreDNS Corefile. | `string` | `""` | no |
 | <a name="input_map-roles"></a> [map-roles](#input\_map-roles) | Additional IAM roles to add to the aws-auth configmap. See readme for example format. | `map(list(string))` | `{}` | no |
 | <a name="input_map-users"></a> [map-users](#input\_map-users) | Additional IAM users to add to the aws-auth configmap. See readme for example format. | `map(list(string))` | `{}` | no |
 | <a name="input_nodes-additional-security-groups"></a> [nodes-additional-security-groups](#input\_nodes-additional-security-groups) | n/a | `list(string)` | `[]` | no |

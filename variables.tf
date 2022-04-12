@@ -184,3 +184,9 @@ variable "enable_restricted_security_policy" {
   description = "Removes the the default eks.privileged policy and creates a restricted policy."
   default     = true
 }
+
+variable "extra_coredns_zones" {
+  type = string
+  description = "Additional zones to be placed in CoreDNS Corefile."
+  default = ""
+}
