@@ -15,11 +15,6 @@ resource "kubernetes_pod_security_policy" "restricted" {
 
   metadata {
     name = "restricted"
-    annotations = {
-      "seccomp.security.alpha.kubernetes.io/allowedProfileNames" = "docker/default,runtime/default"
-      "apparmor.security.beta.kubernetes.io/allowedProfileNames" = "runtime/default"
-      "apparmor.security.beta.kubernetes.io/defaultProfileName"  = "runtime/default"
-    }
   }
 
   spec {
@@ -101,9 +96,6 @@ resource "kubernetes_pod_security_policy" "privileged" {
 
   metadata {
     name = "privileged"
-    annotations = {
-      "seccomp.security.alpha.kubernetes.io/allowedProfileNames" = "*"
-    }
   }
 
   spec {
