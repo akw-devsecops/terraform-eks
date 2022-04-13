@@ -56,7 +56,7 @@ resource "kubernetes_cluster_role" "restricted" {
     verbs          = ["use"]
     api_groups     = ["extensions"]
     resources      = ["podsecuritypolicies"]
-    resource_names = [kubernetes_pod_security_policy.restricted[0].metadata[0].name]
+    resource_names = [kubernetes_pod_security_policy.restricted.metadata[0].name]
   }
 }
 

@@ -86,7 +86,7 @@ resource "kubernetes_cluster_role" "baseline" {
     verbs          = ["use"]
     api_groups     = ["extensions"]
     resources      = ["podsecuritypolicies"]
-    resource_names = [kubernetes_pod_security_policy.baseline[0].metadata[0].name]
+    resource_names = [kubernetes_pod_security_policy.baseline.metadata[0].name]
   }
 }
 
