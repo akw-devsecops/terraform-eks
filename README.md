@@ -59,10 +59,13 @@ No modules.
 | [aws_security_group.Group-eks-nodes](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group) | resource |
 | [aws_security_group_rule.Group-eks-nodes-self](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group_rule) | resource |
 | [aws_security_group_rule.Group-eks-self](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group_rule) | resource |
+| [kubernetes_cluster_role.baseline](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/cluster_role) | resource |
 | [kubernetes_cluster_role.restricted](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/cluster_role) | resource |
+| [kubernetes_cluster_role_binding.baseline](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/cluster_role_binding) | resource |
 | [kubernetes_cluster_role_binding.restricted](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/cluster_role_binding) | resource |
 | [kubernetes_config_map.aws_auth](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/config_map) | resource |
 | [kubernetes_config_map.coredns](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/config_map) | resource |
+| [kubernetes_pod_security_policy.baseline](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod_security_policy) | resource |
 | [kubernetes_pod_security_policy.privileged](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod_security_policy) | resource |
 | [kubernetes_pod_security_policy.restricted](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod_security_policy) | resource |
 | [kubernetes_role.privileged](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/role) | resource |
@@ -80,6 +83,7 @@ No modules.
 | <a name="input_tags"></a> [tags](#input\_tags) | n/a | `map(string)` | n/a | yes |
 | <a name="input_vpc-id"></a> [vpc-id](#input\_vpc-id) | n/a | `string` | n/a | yes |
 | <a name="input_create_eks_addons"></a> [create\_eks\_addons](#input\_create\_eks\_addons) | Enable EKS managed addons creation. | `bool` | `true` | no |
+| <a name="input_default_pod_security_policy"></a> [default\_pod\_security\_policy](#input\_default\_pod\_security\_policy) | Configures the default pod security policy. Valid values are privileged, baseline or restricted. | `string` | `"restricted"` | no |
 | <a name="input_eks-additional-security-groups"></a> [eks-additional-security-groups](#input\_eks-additional-security-groups) | n/a | `list(string)` | `[]` | no |
 | <a name="input_eks-masters-iam-role"></a> [eks-masters-iam-role](#input\_eks-masters-iam-role) | n/a | `string` | `""` | no |
 | <a name="input_eks-nodes-iam-role"></a> [eks-nodes-iam-role](#input\_eks-nodes-iam-role) | n/a | `string` | `""` | no |
@@ -93,7 +97,6 @@ No modules.
 | <a name="input_enable-spot-instances"></a> [enable-spot-instances](#input\_enable-spot-instances) | n/a | `bool` | `false` | no |
 | <a name="input_enable_coredns_addon"></a> [enable\_coredns\_addon](#input\_enable\_coredns\_addon) | Enable CoreDNS AddOn | `bool` | `false` | no |
 | <a name="input_enable_iam"></a> [enable\_iam](#input\_enable\_iam) | Deploy IAM Roles in cluster creation. | `bool` | `true` | no |
-| <a name="input_enable_restricted_security_policy"></a> [enable\_restricted\_security\_policy](#input\_enable\_restricted\_security\_policy) | Removes the the default eks.privileged policy and creates a restricted policy. | `bool` | `true` | no |
 | <a name="input_extra_coredns_zones"></a> [extra\_coredns\_zones](#input\_extra\_coredns\_zones) | Additional zones to be placed in CoreDNS Corefile. | `string` | `""` | no |
 | <a name="input_map-roles"></a> [map-roles](#input\_map-roles) | Additional IAM roles to add to the aws-auth configmap. See readme for example format. | `map(list(string))` | `{}` | no |
 | <a name="input_map-users"></a> [map-users](#input\_map-users) | Additional IAM users to add to the aws-auth configmap. See readme for example format. | `map(list(string))` | `{}` | no |

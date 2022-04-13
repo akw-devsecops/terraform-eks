@@ -179,10 +179,10 @@ variable "eks-nodes-iam-role" {
   default = ""
 }
 
-variable "enable_restricted_security_policy" {
-  type        = bool
-  description = "Removes the the default eks.privileged policy and creates a restricted policy."
-  default     = true
+variable "default_pod_security_policy" {
+  type        = string
+  description = "Configures the default pod security policy. Valid values are privileged, baseline or restricted."
+  default     = "restricted"
 }
 
 variable "extra_coredns_zones" {
