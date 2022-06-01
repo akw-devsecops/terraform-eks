@@ -1,5 +1,5 @@
 resource "kubernetes_config_map" "coredns" {
-  count = var.extra_coredns_zones != ""
+  count = var.extra_coredns_zones != "" ? 1 : 0
 
   metadata {
     name      = "coredns"
