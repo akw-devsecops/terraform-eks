@@ -1,4 +1,6 @@
 resource "kubernetes_config_map" "coredns" {
+  count = var.extra_coredns_zones != ""
+
   metadata {
     name      = "coredns"
     namespace = "kube-system"
