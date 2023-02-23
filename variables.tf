@@ -186,7 +186,19 @@ variable "default_pod_security_policy" {
 }
 
 variable "extra_coredns_zones" {
-  type = string
+  type        = string
   description = "Additional zones to be placed in CoreDNS Corefile."
-  default = ""
+  default     = ""
+}
+
+variable "node_increase_pod_limit" {
+  type        = bool
+  description = "Determines whether prefix delegation is enabled."
+  default     = true
+}
+
+variable "enable_custom_networking" {
+  type        = bool
+  description = "Determines whether to use custom networking (additional ENI configuration required)."
+  default     = false
 }

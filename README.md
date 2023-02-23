@@ -23,13 +23,13 @@ The following Resources will be created:
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.15 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >=3.25.0 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 4.47 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | >=3.25.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 4.55.0 |
 | <a name="provider_kubernetes"></a> [kubernetes](#provider\_kubernetes) | n/a |
 | <a name="provider_null"></a> [null](#provider\_null) | n/a |
 
@@ -96,10 +96,12 @@ No modules.
 | <a name="input_enable-public-access"></a> [enable-public-access](#input\_enable-public-access) | n/a | `bool` | `false` | no |
 | <a name="input_enable-spot-instances"></a> [enable-spot-instances](#input\_enable-spot-instances) | n/a | `bool` | `false` | no |
 | <a name="input_enable_coredns_addon"></a> [enable\_coredns\_addon](#input\_enable\_coredns\_addon) | Enable CoreDNS AddOn | `bool` | `false` | no |
+| <a name="input_enable_custom_networking"></a> [enable\_custom\_networking](#input\_enable\_custom\_networking) | Determines whether to use custom networking (additional ENI configuration required). | `bool` | `false` | no |
 | <a name="input_enable_iam"></a> [enable\_iam](#input\_enable\_iam) | Deploy IAM Roles in cluster creation. | `bool` | `true` | no |
 | <a name="input_extra_coredns_zones"></a> [extra\_coredns\_zones](#input\_extra\_coredns\_zones) | Additional zones to be placed in CoreDNS Corefile. | `string` | `""` | no |
 | <a name="input_map-roles"></a> [map-roles](#input\_map-roles) | Additional IAM roles to add to the aws-auth configmap. See readme for example format. | `map(list(string))` | `{}` | no |
 | <a name="input_map-users"></a> [map-users](#input\_map-users) | Additional IAM users to add to the aws-auth configmap. See readme for example format. | `map(list(string))` | `{}` | no |
+| <a name="input_node_increase_pod_limit"></a> [node\_increase\_pod\_limit](#input\_node\_increase\_pod\_limit) | Determines whether prefix delegation is enabled. | `bool` | `true` | no |
 | <a name="input_nodes-additional-security-groups"></a> [nodes-additional-security-groups](#input\_nodes-additional-security-groups) | n/a | `list(string)` | `[]` | no |
 | <a name="input_nodes-version"></a> [nodes-version](#input\_nodes-version) | n/a | `string` | `""` | no |
 | <a name="input_primary-instance-type"></a> [primary-instance-type](#input\_primary-instance-type) | n/a | `string` | `""` | no |
