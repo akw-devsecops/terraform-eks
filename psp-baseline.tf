@@ -1,5 +1,7 @@
 # Applied from Pod Security Standards (https://kubernetes.io/docs/concepts/security/pod-security-standards/#policy-instantiation)
 resource "kubernetes_pod_security_policy" "baseline" {
+  count = var.enable_pod_security_policy ? 1 : 0
+
   metadata {
     name = "baseline"
   }
@@ -76,7 +78,7 @@ resource "kubernetes_pod_security_policy" "baseline" {
 }
 
 resource "kubernetes_cluster_role" "baseline" {
-  count = var.default_pod_security_policy == "baseline" ? 1 : 0
+  count = var.enable_pod_security_policy && (var.default_pod_security_policy == "baseline") ? 1 : 0
 
   metadata {
     name = "psp:baseline"
@@ -86,12 +88,12 @@ resource "kubernetes_cluster_role" "baseline" {
     verbs          = ["use"]
     api_groups     = ["extensions"]
     resources      = ["podsecuritypolicies"]
-    resource_names = [kubernetes_pod_security_policy.baseline.metadata[0].name]
+    resource_names = [kubernetes_pod_security_policy.baseline[0].metadata[0].name]
   }
 }
 
 resource "kubernetes_cluster_role_binding" "baseline" {
-  count = var.default_pod_security_policy == "baseline" ? 1 : 0
+  count = var.enable_pod_security_policy && (var.default_pod_security_policy == "baseline") ? 1 : 0
 
   metadata {
     name = "psp:baseline"

@@ -179,6 +179,12 @@ variable "eks-nodes-iam-role" {
   default = ""
 }
 
+variable "enable_pod_security_policy" {
+  type        = bool
+  description = "Determines wether create PSPs (removed in 1.25)"
+  default     = true
+}
+
 variable "default_pod_security_policy" {
   type        = string
   description = "Configures the default pod security policy. Valid values are privileged, baseline or restricted."

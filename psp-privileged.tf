@@ -1,5 +1,7 @@
 # Applied from Pod Security Standards (https://kubernetes.io/docs/concepts/security/pod-security-standards/#policy-instantiation)
 resource "kubernetes_pod_security_policy" "privileged" {
+  count = var.enable_pod_security_policy ? 1 : 0
+
   metadata {
     name = "privileged"
   }
@@ -33,6 +35,8 @@ resource "kubernetes_pod_security_policy" "privileged" {
 }
 
 resource "kubernetes_role" "privileged" {
+  count = var.enable_pod_security_policy ? 1 : 0
+
   metadata {
     name      = "psp:privileged"
     namespace = "kube-system"
@@ -42,11 +46,13 @@ resource "kubernetes_role" "privileged" {
     verbs          = ["use"]
     api_groups     = ["extensions"]
     resources      = ["podsecuritypolicies"]
-    resource_names = [kubernetes_pod_security_policy.privileged.metadata[0].name]
+    resource_names = [kubernetes_pod_security_policy.privileged[0].metadata[0].name]
   }
 }
 
 resource "kubernetes_role_binding" "privileged" {
+  count = var.enable_pod_security_policy ? 1 : 0
+
   metadata {
     name      = "psp:privileged"
     namespace = "kube-system"
@@ -54,7 +60,7 @@ resource "kubernetes_role_binding" "privileged" {
   role_ref {
     api_group = "rbac.authorization.k8s.io"
     kind      = "Role"
-    name      = kubernetes_role.privileged.metadata[0].name
+    name      = kubernetes_role.privileged[0].metadata[0].name
   }
   subject {
     kind      = "Group"

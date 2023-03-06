@@ -1,5 +1,7 @@
 # Applied from Pod Security Standards (https://kubernetes.io/docs/concepts/security/pod-security-standards/#policy-instantiation)
 resource "kubernetes_pod_security_policy" "restricted" {
+  count = var.enable_pod_security_policy ? 1 : 0
+
   metadata {
     name = "restricted"
   }
@@ -46,7 +48,7 @@ resource "kubernetes_pod_security_policy" "restricted" {
 }
 
 resource "kubernetes_cluster_role" "restricted" {
-  count = var.default_pod_security_policy == "restricted" ? 1 : 0
+  count = var.enable_pod_security_policy && (var.default_pod_security_policy == "restricted") ? 1 : 0
 
   metadata {
     name = "psp:restricted"
@@ -56,12 +58,12 @@ resource "kubernetes_cluster_role" "restricted" {
     verbs          = ["use"]
     api_groups     = ["extensions"]
     resources      = ["podsecuritypolicies"]
-    resource_names = [kubernetes_pod_security_policy.restricted.metadata[0].name]
+    resource_names = [kubernetes_pod_security_policy.restricted[0].metadata[0].name]
   }
 }
 
 resource "kubernetes_cluster_role_binding" "restricted" {
-  count = var.default_pod_security_policy == "restricted" ? 1 : 0
+  count = var.enable_pod_security_policy && (var.default_pod_security_policy == "restricted") ? 1 : 0
 
   metadata {
     name = "psp:restricted"
