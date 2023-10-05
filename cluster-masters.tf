@@ -23,3 +23,8 @@ resource "aws_eks_cluster" "cluster-masters" {
     aws_security_group_rule.Group-eks-self
   ]
 }
+
+resource "aws_cloudwatch_log_group" "cluster" {
+  name              = "/aws/eks/${var.cluster-name}/cluster"
+  retention_in_days = 7
+}
