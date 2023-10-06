@@ -208,3 +208,9 @@ variable "enable_custom_networking" {
   description = "Determines whether to use custom networking (additional ENI configuration required)."
   default     = false
 }
+
+variable "enabled_cluster_log_types" {
+  type        = set(string)
+  description = "List of the desired control plane logging to enable."
+  default     = ["api", "audit", "authenticator", "controllerManager", "scheduler"]
+}
